@@ -50,6 +50,12 @@ common:
   - type: Vocabulary
     url: >-
       https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/vocabulary/bfe-vocabulary.yaml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/rules/bfe-spectral-rules.yml
+  - type: NaftikoCapability
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/capabilities/load-balancer-management.yaml
   - type: Features
     data:
       - name: Layer 7 Load Balancing

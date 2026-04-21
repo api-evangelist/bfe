@@ -3,6 +3,8 @@ BFE (Beyond Front End) is an open-source layer 7 load balancer developed by Baid
 
 **URL:** [https://www.bfe-networks.net/en_us/](https://www.bfe-networks.net/en_us/)
 
+**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+
 ## Tags:
 
  - Load Balancer, Networking, Open Source, Traffic Management, CNCF, Baidu
@@ -10,7 +12,7 @@ BFE (Beyond Front End) is an open-source layer 7 load balancer developed by Baid
 ## Timestamps
 
 - **Created:** 2025-01-01
-- **Modified:** 2026-04-19
+- **Modified:** 2026-04-21
 
 ## APIs
 
@@ -34,6 +36,9 @@ The BFE Management API provides internal monitoring metrics, configuration reloa
 - [Documentation](https://www.bfe-networks.net/en_us/)
 - [GitHubOrganization](https://github.com/bfenetworks)
 - [GitHubRepository](https://github.com/bfenetworks/bfe)
+- [SpectralRules](rules/bfe-spectral-rules.yml)
+- [NaftikoCapability](capabilities/load-balancer-management.yaml)
+- [Vocabulary](vocabulary/bfe-vocabulary.yaml)
 
 ## Features
 
@@ -69,6 +74,8 @@ The BFE Management API provides internal monitoring metrics, configuration reloa
 
 ## Artifacts
 
+Machine-readable API specifications organized by format.
+
 ### OpenAPI
 
 - [BFE Management API](openapi/bfe-management-api.yaml)
@@ -81,9 +88,31 @@ The BFE Management API provides internal monitoring metrics, configuration reloa
 - [bfe-reload-entry-schema.json](json-schema/bfe-reload-entry-schema.json)
 - [bfe-reload-response-schema.json](json-schema/bfe-reload-response-schema.json)
 
+### JSON-LD
+
+- [bfe-context.jsonld](json-ld/bfe-context.jsonld)
+
+## Capabilities
+
+Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
+
+### Shared Per-API Definitions
+
+- [BFE Management API](capabilities/shared/management-api.yaml) — 3 operations for load balancer management
+
+### Workflow Capabilities
+
+| Workflow | APIs Combined | Tools | Persona |
+|----------|--------------|-------|---------|
+| [Load Balancer Management](capabilities/load-balancer-management.yaml) | BFE Management | 3 | Platform Engineer, SRE |
+
 ## Vocabulary
 
 - [BFE Vocabulary](vocabulary/bfe-vocabulary.yaml)
+
+## Rules
+
+- [BFE Spectral Rules](rules/bfe-spectral-rules.yml) — 21 rules across 8 categories enforcing BFE API conventions
 
 ## Maintainers
 

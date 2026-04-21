@@ -1,0 +1,37 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "BFE Management API"
+  description: >-
+    Shared per-API capability definition for BFE Management API operations
+    including metrics monitoring, configuration reload, and profiling.
+  tags:
+    - BFE
+    - Management
+    - Monitoring
+    - Configuration
+
+operations:
+  - name: get-monitor-metrics
+    description: "Retrieve BFE runtime monitoring metrics and counters"
+    method: GET
+    path: /monitor/metrics
+    tags:
+      - Monitoring
+      - Metrics
+
+  - name: get-monitor-categories
+    description: "Retrieve available monitoring metric categories"
+    method: GET
+    path: /monitor/categories
+    tags:
+      - Monitoring
+      - Categories
+
+  - name: reload-config
+    description: "Trigger a hot reload of BFE routing and configuration"
+    method: GET
+    path: /reload
+    tags:
+      - Configuration
+      - Reload

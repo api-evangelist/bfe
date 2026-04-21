@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/json-structure/bfe-monitor-categories-response-structure.json",
+  "name": "MonitorCategoriesResponse",
+  "description": "List of available monitor metric categories.",
+  "type": "object",
+  "properties": {
+    "categories": {
+      "type": "array",
+      "description": "Available monitor category names.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "connections",
+        "requests",
+        "routing",
+        "upstream"
+      ]
+    }
+  }
+}

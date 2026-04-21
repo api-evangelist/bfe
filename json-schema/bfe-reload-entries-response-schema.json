@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/json-schema/bfe-reload-entries-response-schema.json",
+  "title": "ReloadEntriesResponse",
+  "description": "List of available configuration reload entries.",
+  "type": "object",
+  "properties": {
+    "entries": {
+      "type": "array",
+      "description": "Available reload entry names.",
+      "items": {
+        "$ref": "#/components/schemas/ReloadEntry"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/json-schema/bfe-reload-response-schema.json",
+  "title": "ReloadResponse",
+  "description": "Result of a configuration reload operation.",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the reload succeeded.",
+      "example": true
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable result message.",
+      "example": "Configuration reloaded successfully"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the reloaded configuration.",
+      "example": "server_data_conf"
+    }
+  }
+}

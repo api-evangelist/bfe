@@ -1,0 +1,79 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: BFE (Beyond Front End)
+  description: >-
+    Domain vocabulary for the BFE open-source layer 7 load balancer,
+    covering networking, traffic management, and observability concepts.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: bfe-management-v1
+      version: v1
+      baseUrl: http://localhost:8421
+      status: active
+      description: BFE Management API for internal monitoring and config reload
+
+  resources:
+    - name: monitors
+      api: bfe-management-v1
+      actions: [list, get]
+      description: Monitor metric categories for observability
+    - name: reload-entries
+      api: bfe-management-v1
+      actions: [list, reload]
+      description: Configuration reload entries
+    - name: debug
+      api: bfe-management-v1
+      actions: [profile, trace, cmdline]
+      description: Go pprof debugging endpoints
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: reload
+      httpMethod: GET
+      pattern: write
+      description: Triggers a configuration reload
+    - name: profile
+      httpMethod: GET
+      pattern: read
+      description: Generates a profiling report
+
+  schemas:
+    core:
+      - name: MonitorCategoriesResponse
+        keyProperties: [categories]
+      - name: MonitorMetricsResponse
+        keyProperties: [name, metrics]
+      - name: ReloadEntry
+        keyProperties: [name, description]
+      - name: ReloadResponse
+        keyProperties: [success, message, name]
+
+  authentication:
+    schemes:
+      - type: none
+        description: No authentication required — restrict to internal network access only
+
+capability:
+  workflows: []
+  personas:
+    - id: platform-engineer
+      name: Platform Engineer
+      description: Engineer managing BFE load balancer deployments and configuration
+      workflows: []
+
+  domains:
+    - name: Traffic Management
+      description: Layer 7 load balancing and traffic routing
+    - name: Observability
+      description: Metrics, logging, and distributed tracing
+    - name: Configuration
+      description: Dynamic configuration management and reload

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/json-schema/bfe-monitor-categories-response-schema.json",
+  "title": "MonitorCategoriesResponse",
+  "description": "List of available monitor metric categories.",
+  "type": "object",
+  "properties": {
+    "categories": {
+      "type": "array",
+      "description": "Available monitor category names.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "connections",
+        "requests",
+        "routing",
+        "upstream"
+      ]
+    }
+  }
+}

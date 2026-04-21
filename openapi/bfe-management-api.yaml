@@ -1,0 +1,292 @@
+openapi: 3.0.3
+info:
+  title: BFE Management API
+  description: >-
+    The BFE (Beyond Front End) Management API provides internal monitoring,
+    configuration reload, and profiling endpoints for the BFE open-source
+    layer 7 load balancer. This API should only be exposed on internal
+    networks and never publicly accessible.
+  version: v1
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: BFE Community
+    url: https://github.com/bfenetworks/bfe
+  x-generated-from: documentation
+servers:
+  - url: http://localhost:8421
+    description: BFE Management API (internal only, default port 8421)
+tags:
+  - name: Monitor
+    description: Monitor metrics and categories for observability
+  - name: Reload
+    description: Configuration reload operations
+  - name: Debug
+    description: Go pprof debugging and profiling endpoints
+paths:
+  /monitor:
+    get:
+      operationId: listMonitorCategories
+      summary: BFE List Monitor Categories
+      description: Lists all available monitor metric categories.
+      tags:
+        - Monitor
+      responses:
+        '200':
+          description: List of monitor categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorCategoriesResponse'
+              examples:
+                ListMonitorCategories200Example:
+                  summary: Default listMonitorCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    categories:
+                      - connections
+                      - requests
+                      - routing
+                      - upstream
+                      - tls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /monitor/{name}:
+    get:
+      operationId: getMonitorMetrics
+      summary: BFE Get Monitor Metrics
+      description: Returns the metrics information for the specified monitor category.
+      tags:
+        - Monitor
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The monitor category name (e.g., connections, requests, routing).
+          schema:
+            type: string
+          example: connections
+      responses:
+        '200':
+          description: Metrics data for the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorMetricsResponse'
+              examples:
+                GetMonitorMetrics200Example:
+                  summary: Default getMonitorMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    name: connections
+                    metrics:
+                      active_connections: 1250
+                      total_connections: 842511
+                      connection_errors: 3
+        '404':
+          description: Monitor category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reload:
+    get:
+      operationId: listReloadEntries
+      summary: BFE List Reload Entries
+      description: Lists all available configuration reload entries.
+      tags:
+        - Reload
+      responses:
+        '200':
+          description: List of reload entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReloadEntriesResponse'
+              examples:
+                ListReloadEntries200Example:
+                  summary: Default listReloadEntries 200 response
+                  x-microcks-default: true
+                  value:
+                    entries:
+                      - name: server_data_conf
+                        description: Server data configuration
+                      - name: gslb_conf
+                        description: Global server load balancing configuration
+                      - name: name_conf
+                        description: Name table configuration
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reload/{name}:
+    get:
+      operationId: reloadConfiguration
+      summary: BFE Reload Configuration
+      description: Triggers a reload of the configuration specified by name.
+      tags:
+        - Reload
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The reload entry name to trigger.
+          schema:
+            type: string
+          example: server_data_conf
+      responses:
+        '200':
+          description: Configuration reloaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReloadResponse'
+              examples:
+                ReloadConfiguration200Example:
+                  summary: Default reloadConfiguration 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+                    message: Configuration reloaded successfully
+                    name: server_data_conf
+        '404':
+          description: Reload entry not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /debug/pprof/:
+    get:
+      operationId: getPprofIndex
+      summary: BFE Get Pprof Index
+      description: Returns the Go pprof profiling index page.
+      tags:
+        - Debug
+      responses:
+        '200':
+          description: Pprof index page.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /debug/cmdline:
+    get:
+      operationId: getCommandLine
+      summary: BFE Get Command Line
+      description: Returns the command line arguments used to start BFE.
+      tags:
+        - Debug
+      responses:
+        '200':
+          description: Command line information.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /debug/profile:
+    get:
+      operationId: getCpuProfile
+      summary: BFE Get CPU Profile
+      description: Generates and returns a CPU profiling report.
+      tags:
+        - Debug
+      parameters:
+        - name: seconds
+          in: query
+          description: Duration in seconds for CPU profiling.
+          required: false
+          schema:
+            type: integer
+            default: 30
+          example: 30
+      responses:
+        '200':
+          description: CPU profile data in pprof format.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found
+    MonitorCategoriesResponse:
+      title: Monitor Categories Response
+      description: List of available monitor metric categories.
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Available monitor category names.
+          items:
+            type: string
+          example:
+            - connections
+            - requests
+            - routing
+            - upstream
+    MonitorMetricsResponse:
+      title: Monitor Metrics Response
+      description: Metrics data for a specific monitor category.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the monitor category.
+          example: connections
+        metrics:
+          type: object
+          description: Key-value pairs of metric names and values.
+          additionalProperties:
+            type: number
+    ReloadEntriesResponse:
+      title: Reload Entries Response
+      description: List of available configuration reload entries.
+      type: object
+      properties:
+        entries:
+          type: array
+          description: Available reload entry names.
+          items:
+            $ref: '#/components/schemas/ReloadEntry'
+    ReloadEntry:
+      title: Reload Entry
+      description: A configuration reload entry.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique name of the reload entry.
+          example: server_data_conf
+        description:
+          type: string
+          description: Human-readable description of what is reloaded.
+          example: Server data configuration
+    ReloadResponse:
+      title: Reload Response
+      description: Result of a configuration reload operation.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the reload succeeded.
+          example: true
+        message:
+          type: string
+          description: Human-readable result message.
+          example: Configuration reloaded successfully
+        name:
+          type: string
+          description: Name of the reloaded configuration.
+          example: server_data_conf

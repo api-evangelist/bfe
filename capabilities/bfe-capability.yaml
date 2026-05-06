@@ -1,0 +1,288 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: BFE Management API
+  description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling
+    endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never
+    publicly accessible.
+  tags:
+  - Bfe
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: bfe
+    baseUri: http://localhost:8421
+    description: BFE Management API HTTP API.
+    resources:
+    - name: monitor
+      path: /monitor
+      operations:
+      - name: listmonitorcategories
+        method: GET
+        description: BFE List Monitor Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: monitor-name
+      path: /monitor/{name}
+      operations:
+      - name: getmonitormetrics
+        method: GET
+        description: BFE Get Monitor Metrics
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: The monitor category name (e.g., connections, requests, routing).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reload
+      path: /reload
+      operations:
+      - name: listreloadentries
+        method: GET
+        description: BFE List Reload Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reload-name
+      path: /reload/{name}
+      operations:
+      - name: reloadconfiguration
+        method: GET
+        description: BFE Reload Configuration
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: The reload entry name to trigger.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-pprof
+      path: /debug/pprof/
+      operations:
+      - name: getpprofindex
+        method: GET
+        description: BFE Get Pprof Index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-cmdline
+      path: /debug/cmdline
+      operations:
+      - name: getcommandline
+        method: GET
+        description: BFE Get Command Line
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-profile
+      path: /debug/profile
+      operations:
+      - name: getcpuprofile
+        method: GET
+        description: BFE Get CPU Profile
+        inputParameters:
+        - name: seconds
+          in: query
+          type: integer
+          description: Duration in seconds for CPU profiling.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: bfe-rest
+    description: REST adapter for BFE Management API.
+    resources:
+    - path: /monitor
+      name: listmonitorcategories
+      operations:
+      - method: GET
+        name: listmonitorcategories
+        description: BFE List Monitor Categories
+        call: bfe.listmonitorcategories
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /monitor/{name}
+      name: getmonitormetrics
+      operations:
+      - method: GET
+        name: getmonitormetrics
+        description: BFE Get Monitor Metrics
+        call: bfe.getmonitormetrics
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /reload
+      name: listreloadentries
+      operations:
+      - method: GET
+        name: listreloadentries
+        description: BFE List Reload Entries
+        call: bfe.listreloadentries
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /reload/{name}
+      name: reloadconfiguration
+      operations:
+      - method: GET
+        name: reloadconfiguration
+        description: BFE Reload Configuration
+        call: bfe.reloadconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /debug/pprof/
+      name: getpprofindex
+      operations:
+      - method: GET
+        name: getpprofindex
+        description: BFE Get Pprof Index
+        call: bfe.getpprofindex
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /debug/cmdline
+      name: getcommandline
+      operations:
+      - method: GET
+        name: getcommandline
+        description: BFE Get Command Line
+        call: bfe.getcommandline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /debug/profile
+      name: getcpuprofile
+      operations:
+      - method: GET
+        name: getcpuprofile
+        description: BFE Get CPU Profile
+        call: bfe.getcpuprofile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: bfe-mcp
+    transport: http
+    description: MCP adapter for BFE Management API for AI agent use.
+    tools:
+    - name: listmonitorcategories
+      description: BFE List Monitor Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.listmonitorcategories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmonitormetrics
+      description: BFE Get Monitor Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.getmonitormetrics
+      with:
+        name: tools.name
+      inputParameters:
+      - name: name
+        type: string
+        description: The monitor category name (e.g., connections, requests, routing).
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreloadentries
+      description: BFE List Reload Entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.listreloadentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reloadconfiguration
+      description: BFE Reload Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.reloadconfiguration
+      with:
+        name: tools.name
+      inputParameters:
+      - name: name
+        type: string
+        description: The reload entry name to trigger.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpprofindex
+      description: BFE Get Pprof Index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.getpprofindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcommandline
+      description: BFE Get Command Line
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.getcommandline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcpuprofile
+      description: BFE Get CPU Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bfe.getcpuprofile
+      with:
+        seconds: tools.seconds
+      inputParameters:
+      - name: seconds
+        type: integer
+        description: Duration in seconds for CPU profiling.
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: BFE Management API — Reload
+  description: 'BFE Management API — Reload. 2 operations. Lead operation: BFE List Reload Entries. Self-contained Naftiko
+    capability covering one Bfe business surface.'
+  tags:
+  - Bfe
+  - Reload
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BFE_API_KEY: BFE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-reload
+    baseUri: http://localhost:8421
+    description: BFE Management API — Reload business capability. Self-contained, no shared references.
+    resources:
+    - name: reload
+      path: /reload
+      operations:
+      - name: listreloadentries
+        method: GET
+        description: BFE List Reload Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reload-name
+      path: /reload/{name}
+      operations:
+      - name: reloadconfiguration
+        method: GET
+        description: BFE Reload Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The reload entry name to trigger.
+          required: true
+  exposes:
+  - type: rest
+    namespace: management-reload-rest
+    port: 8080
+    description: REST adapter for BFE Management API — Reload. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/reload
+      name: reload
+      description: REST surface for reload.
+      operations:
+      - method: GET
+        name: listreloadentries
+        description: BFE List Reload Entries
+        call: management-reload.listreloadentries
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reload/{name}
+      name: reload-name
+      description: REST surface for reload-name.
+      operations:
+      - method: GET
+        name: reloadconfiguration
+        description: BFE Reload Configuration
+        call: management-reload.reloadconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-reload-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for BFE Management API — Reload. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: bfe-list-reload-entries
+      description: BFE List Reload Entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-reload.listreloadentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bfe-reload-configuration
+      description: BFE Reload Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-reload.reloadconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

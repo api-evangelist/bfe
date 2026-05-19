@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: BFE Management API — Monitor
+  description: 'BFE Management API — Monitor. 2 operations. Lead operation: BFE List Monitor Categories. Self-contained Naftiko
+    capability covering one Bfe business surface.'
+  tags:
+  - Bfe
+  - Monitor
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BFE_API_KEY: BFE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-monitor
+    baseUri: http://localhost:8421
+    description: BFE Management API — Monitor business capability. Self-contained, no shared references.
+    resources:
+    - name: monitor
+      path: /monitor
+      operations:
+      - name: listmonitorcategories
+        method: GET
+        description: BFE List Monitor Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: monitor-name
+      path: /monitor/{name}
+      operations:
+      - name: getmonitormetrics
+        method: GET
+        description: BFE Get Monitor Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The monitor category name (e.g., connections, requests, routing).
+          required: true
+  exposes:
+  - type: rest
+    namespace: management-monitor-rest
+    port: 8080
+    description: REST adapter for BFE Management API — Monitor. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/monitor
+      name: monitor
+      description: REST surface for monitor.
+      operations:
+      - method: GET
+        name: listmonitorcategories
+        description: BFE List Monitor Categories
+        call: management-monitor.listmonitorcategories
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/monitor/{name}
+      name: monitor-name
+      description: REST surface for monitor-name.
+      operations:
+      - method: GET
+        name: getmonitormetrics
+        description: BFE Get Monitor Metrics
+        call: management-monitor.getmonitormetrics
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-monitor-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for BFE Management API — Monitor. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: bfe-list-monitor-categories
+      description: BFE List Monitor Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-monitor.listmonitorcategories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bfe-get-monitor-metrics
+      description: BFE Get Monitor Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-monitor.getmonitormetrics
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,140 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: BFE Management API — Debug
+  description: 'BFE Management API — Debug. 3 operations. Lead operation: BFE Get Command Line. Self-contained Naftiko capability
+    covering one Bfe business surface.'
+  tags:
+  - Bfe
+  - Debug
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BFE_API_KEY: BFE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-debug
+    baseUri: http://localhost:8421
+    description: BFE Management API — Debug business capability. Self-contained, no shared references.
+    resources:
+    - name: debug-cmdline
+      path: /debug/cmdline
+      operations:
+      - name: getcommandline
+        method: GET
+        description: BFE Get Command Line
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-pprof
+      path: /debug/pprof/
+      operations:
+      - name: getpprofindex
+        method: GET
+        description: BFE Get Pprof Index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-profile
+      path: /debug/profile
+      operations:
+      - name: getcpuprofile
+        method: GET
+        description: BFE Get CPU Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: seconds
+          in: query
+          type: integer
+          description: Duration in seconds for CPU profiling.
+  exposes:
+  - type: rest
+    namespace: management-debug-rest
+    port: 8080
+    description: REST adapter for BFE Management API — Debug. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/debug/cmdline
+      name: debug-cmdline
+      description: REST surface for debug-cmdline.
+      operations:
+      - method: GET
+        name: getcommandline
+        description: BFE Get Command Line
+        call: management-debug.getcommandline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/debug/pprof
+      name: debug-pprof
+      description: REST surface for debug-pprof.
+      operations:
+      - method: GET
+        name: getpprofindex
+        description: BFE Get Pprof Index
+        call: management-debug.getpprofindex
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/debug/profile
+      name: debug-profile
+      description: REST surface for debug-profile.
+      operations:
+      - method: GET
+        name: getcpuprofile
+        description: BFE Get CPU Profile
+        call: management-debug.getcpuprofile
+        with:
+          seconds: rest.seconds
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-debug-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for BFE Management API — Debug. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: bfe-get-command-line
+      description: BFE Get Command Line
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-debug.getcommandline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bfe-get-pprof-index
+      description: BFE Get Pprof Index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-debug.getpprofindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bfe-get-cpu-profile
+      description: BFE Get CPU Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-debug.getcpuprofile
+      with:
+        seconds: tools.seconds
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -4,7 +4,7 @@ description: BFE (Beyond Front End) is an open-source layer 7 load balancer deve
   routing, forwarding, and load balancing capabilities with support for HTTP, HTTPS, HTTP/2, WebSocket, TLS, and gRPC. BFE
   is a CNCF sandbox project licensed under Apache 2.0.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Load Balancer
 - Networking

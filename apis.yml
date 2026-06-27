@@ -33,11 +33,11 @@ apis:
     url: https://www.bfe-networks.net/en_us/operation/api/
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/openapi/bfe-management-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/management-debug.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/management-monitor.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/management-reload.yaml
 common:
 - type: Portal

@@ -40,6 +40,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/management-reload.yaml
 common:
+- type: DomainSecurity
+  url: security/bfe-domain-security.yml
 - type: Portal
   url: https://www.bfe-networks.net/en_us/
 - type: Documentation

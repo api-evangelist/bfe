@@ -40,6 +40,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/management-reload.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/bfe-agentic-access.yml
 - type: DomainSecurity
   url: security/bfe-domain-security.yml
 - type: Portal

@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: BFE Management Debug API
+  description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.
+  version: v1
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: BFE Community
+    url: https://github.com/bfenetworks/bfe
+  x-generated-from: documentation
+servers:
+- url: http://localhost:8421
+  description: BFE Management API (internal only, default port 8421)
+tags:
+- name: Debug
+  description: Go pprof debugging and profiling endpoints
+paths:
+  /debug/pprof/:
+    get:
+      operationId: getPprofIndex
+      summary: BFE Get Pprof Index
+      description: Returns the Go pprof profiling index page.
+      tags:
+      - Debug
+      responses:
+        '200':
+          description: Pprof index page.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /debug/cmdline:
+    get:
+      operationId: getCommandLine
+      summary: BFE Get Command Line
+      description: Returns the command line arguments used to start BFE.
+      tags:
+      - Debug
+      responses:
+        '200':
+          description: Command line information.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /debug/profile:
+    get:
+      operationId: getCpuProfile
+      summary: BFE Get CPU Profile
+      description: Generates and returns a CPU profiling report.
+      tags:
+      - Debug
+      parameters:
+      - name: seconds
+        in: query
+        description: Duration in seconds for CPU profiling.
+        required: false
+        schema:
+          type: integer
+          default: 30
+        example: 30
+      responses:
+        '200':
+          description: CPU profile data in pprof format.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK

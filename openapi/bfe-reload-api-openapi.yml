@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: BFE Management Debug Reload API
+  description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.
+  version: v1
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: BFE Community
+    url: https://github.com/bfenetworks/bfe
+  x-generated-from: documentation
+servers:
+- url: http://localhost:8421
+  description: BFE Management API (internal only, default port 8421)
+tags:
+- name: Reload
+  description: Configuration reload operations
+paths:
+  /reload:
+    get:
+      operationId: listReloadEntries
+      summary: BFE List Reload Entries
+      description: Lists all available configuration reload entries.
+      tags:
+      - Reload
+      responses:
+        '200':
+          description: List of reload entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReloadEntriesResponse'
+              examples:
+                ListReloadEntries200Example:
+                  summary: Default listReloadEntries 200 response
+                  x-microcks-default: true
+                  value:
+                    entries:
+                    - name: server_data_conf
+                      description: Server data configuration
+                    - name: gslb_conf
+                      description: Global server load balancing configuration
+                    - name: name_conf
+                      description: Name table configuration
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reload/{name}:
+    get:
+      operationId: reloadConfiguration
+      summary: BFE Reload Configuration
+      description: Triggers a reload of the configuration specified by name.
+      tags:
+      - Reload
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The reload entry name to trigger.
+        schema:
+          type: string
+        example: server_data_conf
+      responses:
+        '200':
+          description: Configuration reloaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReloadResponse'
+              examples:
+                ReloadConfiguration200Example:
+                  summary: Default reloadConfiguration 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+                    message: Configuration reloaded successfully
+                    name: server_data_conf
+        '404':
+          description: Reload entry not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReloadResponse:
+      title: Reload Response
+      description: Result of a configuration reload operation.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the reload succeeded.
+          example: true
+        message:
+          type: string
+          description: Human-readable result message.
+          example: Configuration reloaded successfully
+        name:
+          type: string
+          description: Name of the reloaded configuration.
+          example: server_data_conf
+    ReloadEntriesResponse:
+      title: Reload Entries Response
+      description: List of available configuration reload entries.
+      type: object
+      properties:
+        entries:
+          type: array
+          description: Available reload entry names.
+          items:
+            $ref: '#/components/schemas/ReloadEntry'
+    ReloadEntry:
+      title: Reload Entry
+      description: A configuration reload entry.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique name of the reload entry.
+          example: server_data_conf
+        description:
+          type: string
+          description: Human-readable description of what is reloaded.
+          example: Server data configuration
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found

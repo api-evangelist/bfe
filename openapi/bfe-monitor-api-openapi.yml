@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: BFE Management Debug Monitor API
+  description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.
+  version: v1
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: BFE Community
+    url: https://github.com/bfenetworks/bfe
+  x-generated-from: documentation
+servers:
+- url: http://localhost:8421
+  description: BFE Management API (internal only, default port 8421)
+tags:
+- name: Monitor
+  description: Monitor metrics and categories for observability
+paths:
+  /monitor:
+    get:
+      operationId: listMonitorCategories
+      summary: BFE List Monitor Categories
+      description: Lists all available monitor metric categories.
+      tags:
+      - Monitor
+      responses:
+        '200':
+          description: List of monitor categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorCategoriesResponse'
+              examples:
+                ListMonitorCategories200Example:
+                  summary: Default listMonitorCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    categories:
+                    - connections
+                    - requests
+                    - routing
+                    - upstream
+                    - tls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /monitor/{name}:
+    get:
+      operationId: getMonitorMetrics
+      summary: BFE Get Monitor Metrics
+      description: Returns the metrics information for the specified monitor category.
+      tags:
+      - Monitor
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The monitor category name (e.g., connections, requests, routing).
+        schema:
+          type: string
+        example: connections
+      responses:
+        '200':
+          description: Metrics data for the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorMetricsResponse'
+              examples:
+                GetMonitorMetrics200Example:
+                  summary: Default getMonitorMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    name: connections
+                    metrics:
+                      active_connections: 1250
+                      total_connections: 842511
+                      connection_errors: 3
+        '404':
+          description: Monitor category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MonitorCategoriesResponse:
+      title: Monitor Categories Response
+      description: List of available monitor metric categories.
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Available monitor category names.
+          items:
+            type: string
+          example:
+          - connections
+          - requests
+          - routing
+          - upstream
+    MonitorMetricsResponse:
+      title: Monitor Metrics Response
+      description: Metrics data for a specific monitor category.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the monitor category.
+          example: connections
+        metrics:
+          type: object
+          description: Key-value pairs of metric names and values.
+          additionalProperties:
+            type: number
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found

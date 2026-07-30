@@ -4,7 +4,19 @@ description: BFE (Beyond Front End) is an open-source layer 7 load balancer deve
   routing, forwarding, and load balancing capabilities with support for HTTP, HTTPS, HTTP/2, WebSocket, TLS, and gRPC. BFE
   is a CNCF sandbox project licensed under Apache 2.0.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bfe.png
 tags:
 - Load Balancer
 - Networking
@@ -17,22 +29,54 @@ created: '2025-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: bfe:bfe-management-api
-  name: BFE Management API
-  description: The BFE Management API provides internal monitoring metrics, configuration reload, and Go pprof profiling endpoints.
-    This API should only be exposed on internal networks.
+- aid: bfe:bfe-debug-api
+  name: BFE Debug API
+  description: Go pprof debugging and profiling endpoints
   humanURL: https://www.bfe-networks.net/en_us/operation/api/
   baseURL: http://localhost:8421
   tags:
-  - Management
-  - Monitoring
-  - Configuration
-  - Observability
+  - Debug
   properties:
+  - type: OpenAPI
+    url: openapi/bfe-debug-api-openapi.yml
   - type: Documentation
     url: https://www.bfe-networks.net/en_us/operation/api/
+  - type: X-NaftikoCapability
+    url: capabilities/management-debug.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/management-monitor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/management-reload.yaml
+- aid: bfe:bfe-monitor-api
+  name: BFE Monitor API
+  description: Monitor metrics and categories for observability
+  humanURL: https://www.bfe-networks.net/en_us/operation/api/
+  baseURL: http://localhost:8421
+  tags:
+  - Monitor
+  properties:
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/openapi/bfe-management-api.yaml
+    url: openapi/bfe-monitor-api-openapi.yml
+  - type: Documentation
+    url: https://www.bfe-networks.net/en_us/operation/api/
+  - type: X-NaftikoCapability
+    url: capabilities/management-debug.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/management-monitor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/management-reload.yaml
+- aid: bfe:bfe-reload-api
+  name: BFE Reload API
+  description: Configuration reload operations
+  humanURL: https://www.bfe-networks.net/en_us/operation/api/
+  baseURL: http://localhost:8421
+  tags:
+  - Reload
+  properties:
+  - type: OpenAPI
+    url: openapi/bfe-reload-api-openapi.yml
+  - type: Documentation
+    url: https://www.bfe-networks.net/en_us/operation/api/
   - type: X-NaftikoCapability
     url: capabilities/management-debug.yaml
   - type: X-NaftikoCapability

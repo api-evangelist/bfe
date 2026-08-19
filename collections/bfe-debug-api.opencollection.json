@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BFE Management Debug API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Debug",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BFE Get Pprof Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/debug/pprof/"
+          },
+          "docs": "Returns the Go pprof profiling index page."
+        },
+        {
+          "info": {
+            "name": "BFE Get Command Line",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/debug/cmdline"
+          },
+          "docs": "Returns the command line arguments used to start BFE."
+        },
+        {
+          "info": {
+            "name": "BFE Get CPU Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/debug/profile",
+            "params": [
+              {
+                "name": "seconds",
+                "value": "30",
+                "type": "query",
+                "description": "Duration in seconds for CPU profiling."
+              }
+            ]
+          },
+          "docs": "Generates and returns a CPU profiling report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

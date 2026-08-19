@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BFE Management Debug Monitor API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BFE List Monitor Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/monitor"
+          },
+          "docs": "Lists all available monitor metric categories."
+        },
+        {
+          "info": {
+            "name": "BFE Get Monitor Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "connections",
+                "type": "path",
+                "description": "The monitor category name (e.g., connections, requests, routing)."
+              }
+            ]
+          },
+          "docs": "Returns the metrics information for the specified monitor category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

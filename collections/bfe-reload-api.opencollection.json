@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BFE Management Debug Reload API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BFE List Reload Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/reload"
+          },
+          "docs": "Lists all available configuration reload entries."
+        },
+        {
+          "info": {
+            "name": "BFE Reload Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8421/reload/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "server_data_conf",
+                "type": "path",
+                "description": "The reload entry name to trigger."
+              }
+            ]
+          },
+          "docs": "Triggers a reload of the configuration specified by name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

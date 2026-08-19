@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "b90779c7-3719-461a-a65c-d9d89f91f7aa",
+      "name": "Monitor",
+      "description": {
+        "content": "Monitor metrics and categories for observability",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5d10acc-1fa4-4884-ac9b-c2d07b35bbf8",
+          "name": "BFE List Monitor Categories",
+          "request": {
+            "name": "BFE List Monitor Categories",
+            "description": {
+              "content": "Lists all available monitor metric categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6db59db-0ea3-4e64-8d14-4b406598d22c",
+              "name": "List of monitor categories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categories\": [\n    \"connections\",\n    \"requests\",\n    \"routing\",\n    \"upstream\",\n    \"tls\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73b1dadc-76b4-483d-a19c-baf36bfdb8e5",
+          "name": "BFE Get Monitor Metrics",
+          "request": {
+            "name": "BFE Get Monitor Metrics",
+            "description": {
+              "content": "Returns the metrics information for the specified monitor category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitor",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The monitor category name (e.g., connections, requests, routing)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a003cfd-4084-428c-9b8f-d1ba74099478",
+              "name": "Metrics data for the specified category.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The monitor category name (e.g., connections, requests, routing)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"connections\",\n  \"metrics\": {\n    \"active_connections\": 1250,\n    \"total_connections\": 842511,\n    \"connection_errors\": 3\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e07d2d68-3ee9-45c5-a3a3-ae4dff0ce389",
+              "name": "Monitor category not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The monitor category name (e.g., connections, requests, routing)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"resource not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8421",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5280b93b-c1ee-4c00-bb11-4a663ea5bfca",
+    "name": "BFE Management Debug Monitor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.\n\nContact Support:\n Name: BFE Community",
+      "type": "text/plain"
+    }
+  }
+}

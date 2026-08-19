@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "71730e6a-e5a8-44d9-bc73-920f286ce6db",
+      "name": "Reload",
+      "description": {
+        "content": "Configuration reload operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0bdb643-46a1-4532-9daa-efcb87ddd5cf",
+          "name": "BFE List Reload Entries",
+          "request": {
+            "name": "BFE List Reload Entries",
+            "description": {
+              "content": "Lists all available configuration reload entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c060fde-98c9-4869-ad18-63aa16bf9f53",
+              "name": "List of reload entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"name\": \"server_data_conf\",\n      \"description\": \"Server data configuration\"\n    },\n    {\n      \"name\": \"gslb_conf\",\n      \"description\": \"Global server load balancing configuration\"\n    },\n    {\n      \"name\": \"name_conf\",\n      \"description\": \"Name table configuration\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a413f3ba-7ad2-47ae-a444-0d9646a7fe9c",
+          "name": "BFE Reload Configuration",
+          "request": {
+            "name": "BFE Reload Configuration",
+            "description": {
+              "content": "Triggers a reload of the configuration specified by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reload",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The reload entry name to trigger."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e39b804b-3dee-44fd-b40a-3fb4c04d83fe",
+              "name": "Configuration reloaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reload",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The reload entry name to trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Configuration reloaded successfully\",\n  \"name\": \"server_data_conf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3edc63dd-6495-40ca-a172-623842bbd287",
+              "name": "Reload entry not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reload",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The reload entry name to trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"resource not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8421",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f8990a02-0cc3-4779-bdfd-41bbf4d84123",
+    "name": "BFE Management Debug Reload API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.\n\nContact Support:\n Name: BFE Community",
+      "type": "text/plain"
+    }
+  }
+}

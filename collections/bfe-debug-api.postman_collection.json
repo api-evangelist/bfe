@@ -1,0 +1,226 @@
+{
+  "item": [
+    {
+      "id": "cfa0193b-7669-418e-89b8-4c55d115d9f6",
+      "name": "Debug",
+      "description": {
+        "content": "Go pprof debugging and profiling endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9801543-f04e-44c8-9d94-d2f2abf4fdbc",
+          "name": "BFE Get Pprof Index",
+          "request": {
+            "name": "BFE Get Pprof Index",
+            "description": {
+              "content": "Returns the Go pprof profiling index page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "pprof",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23189c2e-c7d4-4534-96e2-11665614a2c3",
+              "name": "Pprof index page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "pprof",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35e72b27-4a0c-4f39-acdf-efce3e260e22",
+          "name": "BFE Get Command Line",
+          "request": {
+            "name": "BFE Get Command Line",
+            "description": {
+              "content": "Returns the command line arguments used to start BFE.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "cmdline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7e2449b-a7d3-40d5-8927-30e6c3798898",
+              "name": "Command line information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "cmdline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6eef324e-7b72-401b-abed-b1f16745e422",
+          "name": "BFE Get CPU Profile",
+          "request": {
+            "name": "BFE Get CPU Profile",
+            "description": {
+              "content": "Generates and returns a CPU profiling report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "seconds",
+                  "value": "30",
+                  "description": "Duration in seconds for CPU profiling."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d3db603-ce36-4ca6-963b-912f4696585d",
+              "name": "CPU profile data in pprof format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "seconds",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8421",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c9966dd2-e48a-4b9e-b93a-ed9af7579f40",
+    "name": "BFE Management Debug API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.\n\nContact Support:\n Name: BFE Community",
+      "type": "text/plain"
+    }
+  }
+}

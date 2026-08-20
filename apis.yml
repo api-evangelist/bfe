@@ -20,6 +20,13 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bfe.png
 tags:
 - Load Balancer
 - Networking
+- Open-Source
+- Traffic Management
+- CNCF
+- Baidu
+tags_raw:
+- Load Balancer
+- Networking
 - Open Source
 - Traffic Management
 - CNCF
@@ -47,6 +54,8 @@ apis:
   humanURL: https://www.bfe-networks.net/en_us/operation/api/
   baseURL: http://localhost:8421
   tags:
+  - Monitors
+  tags_raw:
   - Monitor
   properties:
   - type: OpenAPI

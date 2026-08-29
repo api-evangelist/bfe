@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: BFE Management Debug Reload API
   description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.
@@ -104,16 +104,6 @@ components:
           type: string
           description: Name of the reloaded configuration.
           example: server_data_conf
-    ReloadEntriesResponse:
-      title: Reload Entries Response
-      description: List of available configuration reload entries.
-      type: object
-      properties:
-        entries:
-          type: array
-          description: Available reload entry names.
-          items:
-            $ref: '#/components/schemas/ReloadEntry'
     ReloadEntry:
       title: Reload Entry
       description: A configuration reload entry.
@@ -136,3 +126,13 @@ components:
           type: string
           description: Error message.
           example: resource not found
+    ReloadEntriesResponse:
+      title: Reload Entries Response
+      description: List of available configuration reload entries.
+      type: object
+      properties:
+        entries:
+          type: array
+          description: Available reload entry names.
+          items:
+            $ref: '#/components/schemas/ReloadEntry'

@@ -1,8 +1,8 @@
 aid: bfe
 name: BFE
-description: BFE (Beyond Front End) is an open-source layer 7 load balancer developed by Baidu, providing advanced traffic
-  routing, forwarding, and load balancing capabilities with support for HTTP, HTTPS, HTTP/2, WebSocket, TLS, and gRPC. BFE
-  is a CNCF sandbox project licensed under Apache 2.0.
+description: BFE (Beyond Front End) is an open-source layer 7 load balancer developed by Baidu, providing
+  advanced traffic routing, forwarding, and load balancing capabilities with support for HTTP, HTTPS,
+  HTTP/2, WebSocket, TLS, and gRPC. BFE is a CNCF sandbox project licensed under Apache 2.0.
 type: Index
 deliveryModel:
   model: self-hosted
@@ -46,7 +46,7 @@ tags_raw:
 - Baidu
 url: https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/apis.yml
 created: '2025-01-01'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: bfe:bfe-debug-api
@@ -88,6 +88,8 @@ apis:
   - type: Documentation
     url: https://www.bfe-networks.net/en_us/operation/api/
 common:
+- type: Website
+  url: https://bfe-networks.net
 - type: IssueTracker
   url: https://github.com/bfenetworks/bfe/issues
 - type: Releases

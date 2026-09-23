@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: BFE Management Debug Monitor API
+  title: BFE Management Monitor API
   description: The BFE (Beyond Front End) Management API provides internal monitoring, configuration reload, and profiling endpoints for the BFE open-source layer 7 load balancer. This API should only be exposed on internal networks and never publicly accessible.
   version: v1
   license:
@@ -103,15 +103,6 @@ components:
           - requests
           - routing
           - upstream
-    ErrorResponse:
-      title: Error Response
-      description: Standard error response.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-          example: resource not found
     MonitorMetricsResponse:
       title: Monitor Metrics Response
       description: Metrics data for a specific monitor category.
@@ -126,3 +117,12 @@ components:
           description: Key-value pairs of metric names and values.
           additionalProperties:
             type: number
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found

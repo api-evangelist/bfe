@@ -1,9 +1,7 @@
 {
   "provider": "bfe",
   "sources": [
-    "bfe-debug-api-openapi.yml",
-    "bfe-monitor-api-openapi.yml",
-    "bfe-reload-api-openapi.yml"
+    "_ae-authored/bfe-management-api.yaml"
   ],
   "outputs": [
     "bfe-debug-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "bfe-debug-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "bfe-monitor-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "bfe-reload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bfe-management-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "bfe-debug-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bfe-monitor-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bfe-reload-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

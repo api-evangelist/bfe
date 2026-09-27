@@ -103,6 +103,15 @@ components:
           - requests
           - routing
           - upstream
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found
     MonitorMetricsResponse:
       title: Monitor Metrics Response
       description: Metrics data for a specific monitor category.
@@ -117,12 +126,3 @@ components:
           description: Key-value pairs of metric names and values.
           additionalProperties:
             type: number
-    ErrorResponse:
-      title: Error Response
-      description: Standard error response.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-          example: resource not found

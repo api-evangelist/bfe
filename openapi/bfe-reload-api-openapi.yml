@@ -100,16 +100,15 @@ components:
           type: string
           description: Human-readable description of what is reloaded.
           example: Server data configuration
-    ReloadEntriesResponse:
-      title: Reload Entries Response
-      description: List of available configuration reload entries.
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
       type: object
       properties:
-        entries:
-          type: array
-          description: Available reload entry names.
-          items:
-            $ref: '#/components/schemas/ReloadEntry'
+        error:
+          type: string
+          description: Error message.
+          example: resource not found
     ReloadResponse:
       title: Reload Response
       description: Result of a configuration reload operation.
@@ -127,12 +126,13 @@ components:
           type: string
           description: Name of the reloaded configuration.
           example: server_data_conf
-    ErrorResponse:
-      title: Error Response
-      description: Standard error response.
+    ReloadEntriesResponse:
+      title: Reload Entries Response
+      description: List of available configuration reload entries.
       type: object
       properties:
-        error:
-          type: string
-          description: Error message.
-          example: resource not found
+        entries:
+          type: array
+          description: Available reload entry names.
+          items:
+            $ref: '#/components/schemas/ReloadEntry'

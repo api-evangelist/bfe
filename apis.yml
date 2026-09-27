@@ -33,7 +33,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bfe.png
 tags:
 - Load Balancer
 - Networking
-- Open-Source
+- Open Source
 - Traffic Management
 - CNCF
 - Baidu
@@ -44,6 +44,7 @@ tags_raw:
 - Traffic Management
 - CNCF
 - Baidu
+- Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/bfe/refs/heads/main/apis.yml
 created: '2025-01-01'
 modified: '2026-09-16'

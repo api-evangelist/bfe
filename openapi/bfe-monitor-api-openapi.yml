@@ -88,21 +88,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MonitorCategoriesResponse:
-      title: Monitor Categories Response
-      description: List of available monitor metric categories.
-      type: object
-      properties:
-        categories:
-          type: array
-          description: Available monitor category names.
-          items:
-            type: string
-          example:
-          - connections
-          - requests
-          - routing
-          - upstream
     ErrorResponse:
       title: Error Response
       description: Standard error response.
@@ -126,3 +111,18 @@ components:
           description: Key-value pairs of metric names and values.
           additionalProperties:
             type: number
+    MonitorCategoriesResponse:
+      title: Monitor Categories Response
+      description: List of available monitor metric categories.
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Available monitor category names.
+          items:
+            type: string
+          example:
+          - connections
+          - requests
+          - routing
+          - upstream

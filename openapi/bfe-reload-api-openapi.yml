@@ -87,19 +87,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReloadEntry:
-      title: Reload Entry
-      description: A configuration reload entry.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Unique name of the reload entry.
-          example: server_data_conf
-        description:
-          type: string
-          description: Human-readable description of what is reloaded.
-          example: Server data configuration
     ErrorResponse:
       title: Error Response
       description: Standard error response.
@@ -136,3 +123,16 @@ components:
           description: Available reload entry names.
           items:
             $ref: '#/components/schemas/ReloadEntry'
+    ReloadEntry:
+      title: Reload Entry
+      description: A configuration reload entry.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique name of the reload entry.
+          example: server_data_conf
+        description:
+          type: string
+          description: Human-readable description of what is reloaded.
+          example: Server data configuration

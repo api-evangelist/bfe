@@ -88,29 +88,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      title: Error Response
-      description: Standard error response.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-          example: resource not found
-    MonitorMetricsResponse:
-      title: Monitor Metrics Response
-      description: Metrics data for a specific monitor category.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the monitor category.
-          example: connections
-        metrics:
-          type: object
-          description: Key-value pairs of metric names and values.
-          additionalProperties:
-            type: number
     MonitorCategoriesResponse:
       title: Monitor Categories Response
       description: List of available monitor metric categories.
@@ -126,3 +103,26 @@ components:
           - requests
           - routing
           - upstream
+    MonitorMetricsResponse:
+      title: Monitor Metrics Response
+      description: Metrics data for a specific monitor category.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the monitor category.
+          example: connections
+        metrics:
+          type: object
+          description: Key-value pairs of metric names and values.
+          additionalProperties:
+            type: number
+    ErrorResponse:
+      title: Error Response
+      description: Standard error response.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+          example: resource not found

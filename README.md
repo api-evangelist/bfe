@@ -1,4 +1,4 @@
-# BFE (bfe)
+# BFE
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,121 +66,166 @@
 
 BFE (Beyond Front End) is an open-source layer 7 load balancer developed by Baidu, providing advanced traffic routing, forwarding, and load balancing capabilities with support for HTTP, HTTPS, HTTP/2, WebSocket, TLS, and gRPC. BFE is a CNCF sandbox project licensed under Apache 2.0.
 
-**URL:** [https://www.bfe-networks.net/en_us/](https://www.bfe-networks.net/en_us/)
+**Areas:** Load Balancer · Networking · Open Source · Traffic Management · CNCF · Baidu
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## BFE on APIs.io
 
-## Tags:
+Everything profiled for BFE is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bfe/](https://apis.io/providers/bfe/)** — or go straight to one of the APIs or properties below.
 
- - Load Balancer, Networking, Open Source, Traffic Management, CNCF, Baidu
+### APIs (3)
 
-## Timestamps
+- [BFE Debug API](https://apis.io/apis/bfe/bfe-debug-api/) — Go pprof debugging and profiling endpoints
+- [BFE Monitor API](https://apis.io/apis/bfe/bfe-monitor-api/) — Monitor metrics and categories for observability
+- [BFE Reload API](https://apis.io/apis/bfe/bfe-reload-api/) — Configuration reload operations
 
-- **Created:** 2025-01-01
-- **Modified:** 2026-04-21
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### BFE Management API
-The BFE Management API provides internal monitoring metrics, configuration reload, and Go pprof profiling endpoints. This API should only be exposed on internal networks.
+#### Agentic access (1)
 
-**Human URL:** [https://www.bfe-networks.net/en_us/operation/api/](https://www.bfe-networks.net/en_us/operation/api/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Bfe Agentic Access](https://apis.io/agentic-access/bfe/bfe-agentic-access/)
 
- - Management, Monitoring, Configuration, Observability
+#### JSON Schema (5)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://www.bfe-networks.net/en_us/operation/api/)
-- [OpenAPI](openapi/bfe-management-api.yaml)
+- [MonitorCategoriesResponse](https://apis.io/schemas/bfe/bfe-monitor-categories-response/)
+- [MonitorMetricsResponse](https://apis.io/schemas/bfe/bfe-monitor-metrics-response/)
+- [ReloadEntriesResponse](https://apis.io/schemas/bfe/bfe-reload-entries-response/)
+- [ReloadEntry](https://apis.io/schemas/bfe/bfe-reload-entry/)
+- [ReloadResponse](https://apis.io/schemas/bfe/bfe-reload-response/)
 
-## Common Properties
+#### JSON Structure (5)
 
-- [Portal](https://www.bfe-networks.net/en_us/)
+Data models expressed in JSON Structure.
+
+- [Bfe Monitor Categories Response Structure](https://apis.io/json-structure/bfe/bfe-monitor-categories-response-structure/)
+- [Bfe Monitor Metrics Response Structure](https://apis.io/json-structure/bfe/bfe-monitor-metrics-response-structure/)
+- [Bfe Reload Entries Response Structure](https://apis.io/json-structure/bfe/bfe-reload-entries-response-structure/)
+- [Bfe Reload Entry Structure](https://apis.io/json-structure/bfe/bfe-reload-entry-structure/)
+- [Bfe Reload Response Structure](https://apis.io/json-structure/bfe/bfe-reload-response-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Bfe Context](https://apis.io/jsonld/bfe/bfe-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Bfe Vocabulary](https://apis.io/vocabularies/bfe/bfe-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Bfe Monitor Categories Response Example](https://apis.io/examples/bfe/bfe-monitor-categories-response-example/)
+- [Bfe Monitor Metrics Response Example](https://apis.io/examples/bfe/bfe-monitor-metrics-response-example/)
+- [Bfe Reload Entries Response Example](https://apis.io/examples/bfe/bfe-reload-entries-response-example/)
+- [Bfe Reload Entry Example](https://apis.io/examples/bfe/bfe-reload-entry-example/)
+- [Bfe Reload Response Example](https://apis.io/examples/bfe/bfe-reload-response-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [BFE Management Debug API](https://apis.io/collections/bfe/open-bfe-debug-api/)
+- [BFE Management Debug Monitor API](https://apis.io/collections/bfe/open-bfe-monitor-api/)
+- [BFE Management Debug Reload API](https://apis.io/collections/bfe/open-bfe-reload-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [BFE — jsonschema rules](https://apis.io/rules/bfe/bfe-jsonschema-spectral-rules/)
+- [BFE API Rules](https://apis.io/rules/bfe/bfe-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bfe Domain Security](https://apis.io/security/bfe/bfe-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bfe Plans Pricing](https://apis.io/plans/bfe/bfe-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bfe Rate Limits](https://apis.io/rate-limits/bfe/bfe-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bfe Finops](https://apis.io/finops/bfe/bfe-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://bfe-networks.net)
 - [Documentation](https://www.bfe-networks.net/en_us/)
-- [GitHubOrganization](https://github.com/bfenetworks)
-- [GitHubRepository](https://github.com/bfenetworks/bfe)
-- [SpectralRules](rules/bfe-spectral-rules.yml)
-- [NaftikoCapability](capabilities/load-balancer-management.yaml)
-- [Vocabulary](vocabulary/bfe-vocabulary.yaml)
+- [GitHub](https://github.com/bfenetworks)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Layer 7 Load Balancing | Advanced HTTP/HTTPS/HTTP2 load balancing with pluggable algorithms. |
-| Plugin Framework | Extensible plugin system enabling custom traffic management logic. |
-| Multi-tenancy | Isolated configuration and routing per tenant. |
-| Advanced Routing | DSL-based routing rules for fine-grained traffic control. |
-| Protocol Support | HTTP, HTTPS, SPDY, HTTP/2, gRPC, WebSocket, TLS, FastCGI protocols. |
-| Observability | Built-in metrics, logging, and distributed tracing integration. |
-| Dynamic Configuration | Hot reload of routing and load balancing configuration without restart. |
-| CNCF Sandbox | Hosted as a CNCF sandbox project with active community governance. |
+**Kin Score 31.0** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 17.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
 
-| Name | Description |
-|------|-------------|
-| Enterprise API Gateway | Route and load balance API traffic with per-tenant isolation. |
-| Microservices Traffic Management | Manage east-west and north-south traffic in microservices architectures. |
-| TLS Termination | Terminate TLS/HTTPS at the edge and forward to backend HTTP services. |
-| A/B Testing | Route fractions of traffic to canary deployments using routing rules. |
-| DDoS Mitigation | Use traffic management plugins to detect and mitigate DDoS attacks. |
+**Agent readiness 23.6** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Prometheus | Export metrics to Prometheus for monitoring and alerting. |
-| Kubernetes | Deploy BFE as an ingress controller in Kubernetes clusters. |
-| Docker | Run BFE in Docker containers for containerized deployments. |
-| Grafana | Visualize BFE metrics in Grafana dashboards. |
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bfe/](https://apis.io/providers/bfe/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [BFE Management API](openapi/bfe-management-api.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BFE: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [bfe-monitor-categories-response-schema.json](json-schema/bfe-monitor-categories-response-schema.json)
-- [bfe-monitor-metrics-response-schema.json](json-schema/bfe-monitor-metrics-response-schema.json)
-- [bfe-reload-entries-response-schema.json](json-schema/bfe-reload-entries-response-schema.json)
-- [bfe-reload-entry-schema.json](json-schema/bfe-reload-entry-schema.json)
-- [bfe-reload-response-schema.json](json-schema/bfe-reload-response-schema.json)
-
-### JSON-LD
-
-- [bfe-context.jsonld](json-ld/bfe-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [BFE Management API](capabilities/shared/management-api.yaml) — 3 operations for load balancer management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Load Balancer Management](capabilities/load-balancer-management.yaml) | BFE Management | 3 | Platform Engineer, SRE |
-
-## Vocabulary
-
-- [BFE Vocabulary](vocabulary/bfe-vocabulary.yaml)
-
-## Rules
-
-- [BFE Spectral Rules](rules/bfe-spectral-rules.yml) — 21 rules across 8 categories enforcing BFE API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bfe/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
